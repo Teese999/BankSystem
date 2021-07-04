@@ -1,0 +1,40 @@
+﻿<Window x:Class="BankEF.NewBillWindow"
+        x:Name="NewBillWindowCreate"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BankEF"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        mc:Ignorable="d"
+        Title="NewBillWindow" Height="428" Width="309">
+    <Grid>
+        <StackPanel x:Name="LeftStackPanel" HorizontalAlignment="Left" Height="294" VerticalAlignment="Top" Width="130" Margin="10,10,0,0">
+            <TextBlock x:Name="BalanceField" TextWrapping="Wrap" Text="Баланс" Margin="10,10" FontSize="12" TextAlignment="Center" Height="30" />
+            <TextBlock x:Name="IsCapitalField" TextWrapping="Wrap" Margin="10,10" FontSize="12" TextAlignment="Center" Height="30" Text="Капитализация"/>
+            <TextBlock x:Name="StartDateField" TextWrapping="Wrap" Text="Дата вклада" Margin="10,10" FontSize="12" TextAlignment="Center" Height="30" />
+            <TextBlock x:Name="EndDateField" TextWrapping="Wrap" Text="Окончание вклада" Margin="10,10" FontSize="12" TextAlignment="Center" Height="30" />
+            <TextBlock x:Name="IsActiveField" TextWrapping="Wrap" Text="Активный" Margin="10,10" FontSize="12" TextAlignment="Center" Height="30" />
+            <Button x:Name="SaveBtn" Content="Сохранить" Margin="10,0" Height="30" Command="{Binding BillSaveCommand}">
+                <Button.CommandParameter>
+                    <MultiBinding Converter="{StaticResource BConverter}" Mode="TwoWay" UpdateSourceTrigger="LostFocus">
+                        <Binding Path="Text" ElementName="Balance"/>
+                        <Binding Path="IsChecked" ElementName="IsCapital"/>
+                        <Binding Path="Text" ElementName="StarDate"/>
+                        <Binding Path="Text" ElementName="EndDate"/>
+                        <Binding Path="IsChecked" ElementName="IsCative"/>
+                        <Binding ElementName="NewBillWindowCreate"/>
+                    </MultiBinding>
+                </Button.CommandParameter>
+            </Button>
+        </StackPanel>
+        <StackPanel x:Name="RightStackPanel" HorizontalAlignment="Right" Height="294" VerticalAlignment="Top" Width="130" Margin="0,10,10,0">
+            <TextBox x:Name="Balance" HorizontalAlignment="Right" VerticalAlignment="Center"  Margin="0,10,10,10" Width="110" Height="30"/>
+            <CheckBox x:Name="IsCapital" Margin="10,10" Height="30" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <DatePicker x:Name="StarDate" Margin="10,10" Height="30"/>
+            <DatePicker x:Name="EndDate" Margin="10,10" Height="30"/>
+            <CheckBox x:Name="IsCative" Margin="10,10" Height="30" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <Button x:Name="EscapeBtn" Content="Выйти" Margin="10,0" Height="30" Command="{Binding WindowCloseCommand}" CommandParameter="{Binding ElementName=NewBillWindowCreate}"/>
+        </StackPanel>
+    </Grid>
+</Window>

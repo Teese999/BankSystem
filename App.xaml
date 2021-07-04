@@ -1,0 +1,14 @@
+﻿<Application x:Class="BankEF.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:BankEF"
+             xmlns:c="clr-namespace:BankEF.CommandsConverters"
+             StartupUri="View/MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <c:IndividualAndVipConverter x:Key="IVConverter"/>
+            <c:EntityConverter x:Key="EConverter"/>
+            <c:BillConverter x:Key="BConverter"/>
+        </ResourceDictionary> 
+    </Application.Resources>
+</Application>
